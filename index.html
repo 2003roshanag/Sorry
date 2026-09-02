@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A Little Something I Need to Say</title>
+<title>Dear Ruchi</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Georgia,'Times New Roman',serif}
 html{overflow-x:hidden}body{background:radial-gradient(circle at 50% 10%,#fff8f5,#f5e7e1 55%,#ead7d0);color:#4a3030;overflow-x:hidden}
@@ -55,7 +55,7 @@ button{min-height:48px}
 
 <section class="screen active" id="intro"><div class="card">
 <div style="font-size:48px">🕊️</div>
-<h1>For <span id="name1">Someone Special</span></h1>
+<h1>For my <span id="name1">Kuchu Puchu Ruchi</span></h1>
 <p class="sub">Abb mere messages se toh aap irritate ho rahe ho.<br>Isliye aapke liye ye.</p>
 <button class="primary" onclick="show('envelope')">Open it</button>
 </div></section>
@@ -72,12 +72,12 @@ button{min-height:48px}
 <div id="messageText"></div>
 </div>
 <div class="music"><span>♪ </span><audio id="audio" controls loop style="max-width:100%"><source src="music.mp3" type="audio/mpeg"></audio></div>
-<button class="primary" onclick="show('memories')">Keep reading →</button>
+<button class="primary" onclick="show('memories')">Aagey bhi parh le →</button>
 </div></section>
 
 <section class="screen" id="memories"><div class="card">
 <h1 style="font-size:2.5rem">Our little memories</h1>
-<p class="sub">A few moments that still mean a lot to me.</p>
+<p class="sub">Ye yaad kr aur gussa bhul jaa.</p>
 <div class="gallery-wrap" aria-label="Memory photos">
   <button class="gallery-btn prev" type="button" aria-label="Previous photo">‹</button>
   <div class="gallery" id="gallery"></div>
@@ -85,14 +85,14 @@ button{min-height:48px}
   <div class="dots" id="dots" aria-hidden="true"></div>
   <p class="gallery-hint">Swipe left or right to see each memory</p>
 </div>
-<button class="primary" onclick="show('forgive')">One last thing…</button>
-<p class="note">Replace the photos in the <b>photos</b> folder with your own.</p>
+<button class="primary" onclick="show('forgive')">Ek aur baat…</button>
+<p class="note"> <b>photos</b> </p>
 </div></section>
 
 <section class="screen" id="forgive"><div class="card">
 <div style="font-size:52px">🕊️</div>
-<h1 style="font-size:2.8rem">Can you forgive me?</h1>
-<p class="sub">I know a website can't fix everything.<br>I just wanted you to know that I mean this.</p>
+<h1 style="font-size:2.8rem">Abhi bhi naraz hai?</h1>
+<p class="sub">I know isse kuch nahi hota.<br>But saach m ye mnee dil se bnaya h na ki insta se copy kia h.</p>
 <button class="primary" onclick="yes()">Yes, I forgive you ♥</button>
 <button class="ghost" id="no" onmouseover="moveNo()" onclick="moveNo()">Not yet</button>
 </div></section>
@@ -100,16 +100,16 @@ button{min-height:48px}
 <section class="screen" id="final"><div class="card">
 <div class="final-heart">❤️</div>
 <h1>Thank you, <span id="name3">my favourite person</span>.</h1>
-<p class="sub">I promise I'll let my actions speak louder than these words.</p>
+<p class="sub">I promise I'll irritate you always.</p>
 <p style="font-size:1.25rem;line-height:1.8">“गलतियाँ हो जाती हैं, मगर रिश्ते अनमोल होते हैं।<br>दिल से बस इतना कहना है — मुझे माफ़ कर दो।”</p>
-<button class="primary" onclick="show('intro')">Read it again</button>
+<button class="primary" onclick="show('intro')">Phir se Dekhna h?😏</button>
 </div></section>
 
 <script>
 /* =========================
    EASY CUSTOMIZATION
    ========================= */
-const PERSON_NAME = "Someone Special";
+const PERSON_NAME = "KuchuPuchu Ruchi";
 
 const APOLOGY_PARAGRAPHS = [
 "I know I hurt you, and I am genuinely sorry. I don't want to hide behind excuses or say that I didn't mean it. What matters is that my actions affected you, and I take responsibility for that.",
