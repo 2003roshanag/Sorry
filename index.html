@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Little Something I Need to Say</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Georgia,'Times New Roman',serif}
+html{overflow-x:hidden}body{background:radial-gradient(circle at 50% 10%,#fff8f5,#f5e7e1 55%,#ead7d0);color:#4a3030;overflow-x:hidden}
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.heart{position:absolute;bottom:-30px;font-size:20px;opacity:.55;animation:float 9s linear infinite}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.screen{min-height:100vh;display:none;place-items:center;padding:28px;position:relative;z-index:1}.screen.active{display:grid}
+.card{width:min(720px,94vw);text-align:center;background:rgba(255,255,255,.78);backdrop-filter:blur(8px);border:1px solid rgba(120,70,60,.15);border-radius:24px;padding:34px;box-shadow:0 20px 70px rgba(80,40,30,.14)}
+h1{font-size:clamp(2rem,7vw,4rem);font-weight:500;margin:8px 0 18px}.sub{font-size:1.1rem;line-height:1.7;opacity:.85}
+button{border:0;border-radius:999px;padding:14px 24px;font-size:1rem;cursor:pointer;margin:8px;font-family:inherit;transition:.2s}
+.primary{background:#704744;color:white;box-shadow:0 8px 25px rgba(80,40,30,.18)}.primary:hover{transform:translateY(-2px)}
+.ghost{background:#fff1ed;color:#704744}
+.envelope{width:min(420px,82vw);height:270px;margin:25px auto;position:relative;cursor:pointer;filter:drop-shadow(0 18px 22px rgba(80,40,30,.18))}
+.env-body{position:absolute;inset:0;background:#ead0c7;border-radius:12px;overflow:hidden}
+.env-body:before,.env-body:after{content:"";position:absolute;bottom:0;width:72%;height:100%;background:#e1c1b7}.env-body:before{left:-15%;clip-path:polygon(0 100%,100% 100%,0 0)}.env-body:after{right:-15%;clip-path:polygon(0 100%,100% 0,100% 100%)}
+.flap{position:absolute;top:0;left:0;width:100%;height:55%;background:#f1dcd5;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:1s;z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:44%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:#9b5b58;color:white;display:grid;place-items:center;font-size:25px;box-shadow:0 5px 15px #8a4b48aa}
+.envelope.open .flap{transform:rotateX(180deg);z-index:0}.envelope.open .seal{opacity:0}
+.letter{background:#fffaf2;border:1px solid #ead7bd;border-radius:8px;padding:30px;text-align:left;box-shadow:0 12px 35px rgba(70,40,20,.1);max-height:65vh;overflow:auto}
+.letter p{font-size:1.12rem;line-height:1.9;margin:0 0 16px}.reveal{opacity:0;transform:translateY(8px);animation:reveal .8s forwards}@keyframes reveal{to{opacity:1;transform:none}}
+.gallery-wrap{position:relative;margin:24px auto}
+.gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;touch-action:pan-x pinch-zoom;overscroll-behavior-x:contain;padding:4px 8px 16px;scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery div{flex:0 0 100%;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:18px;background:#ead8d2;scroll-snap-align:center;box-shadow:0 10px 28px rgba(70,40,30,.12)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;margin:0;border-radius:50%;background:rgba(255,255,255,.88);color:#704744;font-size:22px;z-index:2;box-shadow:0 5px 18px rgba(70,40,30,.15)}
+.gallery-btn.prev{left:4px}.gallery-btn.next{right:4px}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:4px}.dot{width:8px;height:8px;border-radius:50%;background:#cdb5ae;transition:.25s}.dot.active{width:22px;border-radius:8px;background:#704744}
+.gallery-hint{font-size:.86rem;opacity:.65;margin:8px 0 0}
+.note{font-size:.9rem;opacity:.65;margin-top:18px}.music{margin:18px auto;padding:10px;background:#fff4f0;border-radius:14px}
+#no{position:relative}.final-heart{font-size:80px;animation:pulse 1.2s infinite}@keyframes pulse{50%{transform:scale(1.12)}}
+@media(max-width:500px){
+.card{padding:23px 14px;width:calc(100vw - 24px);border-radius:20px}
+.screen{padding:12px}
+.letter{padding:20px 17px;max-height:58vh}
+.letter p{font-size:1rem;line-height:1.8}
+.envelope{height:210px;width:86vw}
+button{min-height:48px}
+.gallery-btn{display:none}
+.gallery div{flex-basis:100%;aspect-ratio:4/5}
+}
+@media(min-width:700px){
+.gallery div{flex-basis:72%;max-width:480px}
+.gallery{padding-left:4%;padding-right:4%}
+}
+</style>
+</head>
+<body>
+<div id="hearts"></div>
+
+<section class="screen active" id="intro"><div class="card">
+<div style="font-size:48px">🕊️</div>
+<h1>For <span id="name1">Someone Special</span></h1>
+<p class="sub">There is something I couldn't say properly in a text.<br>So I made this little place for it.</p>
+<button class="primary" onclick="show('envelope')">Open it</button>
+</div></section>
+
+<section class="screen" id="envelope"><div class="card">
+<p class="sub">I hope you'll open this when you're ready.</p>
+<div class="envelope" id="env" onclick="openEnvelope()"><div class="env-body"></div><div class="flap"></div><div class="seal">♥</div></div>
+<p class="note">Tap the letter to open it</p>
+</div></section>
+
+<section class="screen" id="message"><div class="card">
+<div class="letter">
+<h2 style="text-align:center;font-weight:500">Dear <span id="name2">you</span>,</h2>
+<div id="messageText"></div>
+</div>
+<div class="music"><span>♪ </span><audio id="audio" controls loop style="max-width:100%"><source src="music.mp3" type="audio/mpeg"></audio></div>
+<button class="primary" onclick="show('memories')">Keep reading →</button>
+</div></section>
+
+<section class="screen" id="memories"><div class="card">
+<h1 style="font-size:2.5rem">Our little memories</h1>
+<p class="sub">A few moments that still mean a lot to me.</p>
+<div class="gallery-wrap" aria-label="Memory photos">
+  <button class="gallery-btn prev" type="button" aria-label="Previous photo">‹</button>
+  <div class="gallery" id="gallery"></div>
+  <button class="gallery-btn next" type="button" aria-label="Next photo">›</button>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <p class="gallery-hint">Swipe left or right to see each memory</p>
+</div>
+<button class="primary" onclick="show('forgive')">One last thing…</button>
+<p class="note">Replace the photos in the <b>photos</b> folder with your own.</p>
+</div></section>
+
+<section class="screen" id="forgive"><div class="card">
+<div style="font-size:52px">🕊️</div>
+<h1 style="font-size:2.8rem">Can you forgive me?</h1>
+<p class="sub">I know a website can't fix everything.<br>I just wanted you to know that I mean this.</p>
+<button class="primary" onclick="yes()">Yes, I forgive you ♥</button>
+<button class="ghost" id="no" onmouseover="moveNo()" onclick="moveNo()">Not yet</button>
+</div></section>
+
+<section class="screen" id="final"><div class="card">
+<div class="final-heart">❤️</div>
+<h1>Thank you, <span id="name3">my favourite person</span>.</h1>
+<p class="sub">I promise I'll let my actions speak louder than these words.</p>
+<p style="font-size:1.25rem;line-height:1.8">“गलतियाँ हो जाती हैं, मगर रिश्ते अनमोल होते हैं।<br>दिल से बस इतना कहना है — मुझे माफ़ कर दो।”</p>
+<button class="primary" onclick="show('intro')">Read it again</button>
+</div></section>
+
+<script>
+/* =========================
+   EASY CUSTOMIZATION
+   ========================= */
+const PERSON_NAME = "Someone Special";
+
+const APOLOGY_PARAGRAPHS = [
+"I know I hurt you, and I am genuinely sorry. I don't want to hide behind excuses or say that I didn't mean it. What matters is that my actions affected you, and I take responsibility for that.",
+"I understand now that saying “sorry” is not enough if I don't change what caused the hurt. You deserved better from me, and I should have handled things with more care, patience and understanding.",
+"You mean a lot to me. I don't expect this little page to magically make everything okay. I only hope it shows you that I have thought about what happened and that I truly regret hurting you.",
+"I'll do my best to show you through my actions, not just promises, that I have learned from this. Whenever you're ready, I would really like the chance to make things right."
+];
+
+const PHOTOS = [
+"photos/photo1.jpg","photos/photo2.jpg","photos/photo3.jpg",
+"photos/photo4.jpg","photos/photo5.jpg"
+];
+
+document.getElementById("name1").textContent=PERSON_NAME;
+document.getElementById("name2").textContent=PERSON_NAME;
+document.getElementById("name3").textContent=PERSON_NAME;
+
+const msg=document.getElementById("messageText");
+APOLOGY_PARAGRAPHS.forEach((p,i)=>{const el=document.createElement("p");el.className="reveal";el.style.animationDelay=(i*.8)+"s";el.textContent=p;msg.appendChild(el)});
+
+const gallery=document.getElementById("gallery");
+const dots=document.getElementById("dots");
+const prevBtn=document.querySelector(".gallery-btn.prev");
+const nextBtn=document.querySelector(".gallery-btn.next");
+const validPhotos=[];
+PHOTOS.forEach((src,index)=>{
+  const box=document.createElement("div");
+  const img=document.createElement("img");
+  img.src=src;
+  img.alt=`Memory ${index+1}`;
+  img.onerror=()=>{box.remove(); updateDots();};
+  img.onload=()=>updateDots();
+  box.appendChild(img);
+  gallery.appendChild(box);
+  validPhotos.push(box);
+});
+function slides(){return [...gallery.querySelectorAll(":scope > div")]}
+function updateDots(){
+  const items=slides();
+  dots.innerHTML="";
+  items.forEach((_,i)=>{
+    const d=document.createElement("span");
+    d.className="dot"+(i===0?" active":"");
+    dots.appendChild(d);
+  });
+  const current=Math.round(gallery.scrollLeft/Math.max(1,gallery.clientWidth+14));
+  [...dots.children].forEach((d,i)=>d.classList.toggle("active",i===current));
+}
+function goTo(index){
+  const items=slides();
+  if(!items.length)return;
+  index=Math.max(0,Math.min(index,items.length-1));
+  gallery.scrollTo({left:items[index].offsetLeft-8,behavior:"smooth"});
+}
+prevBtn.addEventListener("click",()=>goTo(Math.round(gallery.scrollLeft/Math.max(1,gallery.clientWidth+14))-1));
+nextBtn.addEventListener("click",()=>goTo(Math.round(gallery.scrollLeft/Math.max(1,gallery.clientWidth+14))+1));
+gallery.addEventListener("scroll",()=>requestAnimationFrame(updateDots),{passive:true});
+window.addEventListener("resize",updateDots);
+updateDots();
+
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0)}
+function openEnvelope(){document.getElementById("env").classList.add("open");setTimeout(()=>show("message"),1000)}
+function yes(){show("final")}
+function moveNo(){const b=document.getElementById("no");const x=Math.random()*180-90,y=Math.random()*100-50;b.style.transform=`translate(${x}px,${y}px)`}
+for(let i=0;i<22;i++){const h=document.createElement("div");h.className="heart";h.textContent=["♥","♡","🕊️"][Math.floor(Math.random()*3)];h.style.left=Math.random()*100+"%";h.style.animationDelay=Math.random()*9+"s";h.style.animationDuration=(7+Math.random()*7)+"s";document.getElementById("hearts").appendChild(h)}
+</script>
+</body>
+</html>
